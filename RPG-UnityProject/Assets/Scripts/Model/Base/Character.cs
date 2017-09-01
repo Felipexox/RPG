@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(Rigidbody))]
 public class Character:MonoBehaviour  {
 
     [Header("INFO CHARACTER")]
@@ -13,7 +13,7 @@ public class Character:MonoBehaviour  {
     [SerializeField]
     protected double force;
     [SerializeField]
-    protected double velocity;
+    protected float velocity;
     [SerializeField]
     protected double charisma;
     [Header("ITENS")]
@@ -32,13 +32,25 @@ public class Character:MonoBehaviour  {
         }
     }
 
-    protected virtual void mov_run() { }
+    protected virtual void mov_run(Vector3 dir) {
+        dir = dir.normalized;
+        Vector3 walk = dir * velocity * 1.3f;
+        walk.y = rigidbody.velocity.y;
+        rigidbody.velocity = walk;
+    }
 
-    protected virtual void mov_walk() { }
+    protected virtual void mov_walk(Vector3 dir) {
+        dir = dir.normalized;
+        Vector3 walk = dir * velocity;
+        walk.y = rigidbody.velocity.y;
+        rigidbody.velocity = walk;
+    }
    
 
 
-    public virtual void hit_take(double hit_damage) { }
+    public virtual void hit_take(double hit_damage) {
+        this.life -= hit_damage;
+    }
     
     public double dano_by_status_fisico()
     {
@@ -51,11 +63,12 @@ public class Character:MonoBehaviour  {
 
     public double getVida() { return this.life; }
 
-    public double getVelocity() { return this.velocity; }
+    public float getVelocity() { return this.velocity; }
 
     public string getName() { return this.name; }
 
     public double getCharisma() { return this.charisma; }
 
     public double getForce() { return this.force; }
+   
 }

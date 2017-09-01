@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Model\Base\Cam.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Character.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Weapon.cs" />
