@@ -5,8 +5,10 @@ using UnityEngine;
 public class Item : MonoBehaviour {
     public enum typeItem
     {
-        POTION,
-        WEAPON
+        CONSUMABLE,
+        WEAPON,
+        MISC,
+        QUESTITENS,
 
     }
     [Header("ITEM INFO")]
@@ -17,6 +19,9 @@ public class Item : MonoBehaviour {
     protected string name;
     [SerializeField]
     protected double durability;
-	
+	protected virtual void Interactable()
+    {
+
+    }
 
 }

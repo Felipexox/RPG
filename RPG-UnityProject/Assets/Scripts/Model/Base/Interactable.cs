@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour {
-    public float radius = 3f;
-    bool isFocus = false, hasInteracted = false;
-    Transform player;
-    public GameObject play;
+    [SerializeField]
+    protected float radius = 3f;
+    protected bool isFocus = false, hasInteracted = false;
+    protected Transform player;
 
-    private void Start()
+    protected virtual void Start()
     {
-        OnFocus(play.transform);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        OnFocus(player);
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (isFocus && !hasInteracted)
         {
@@ -25,18 +26,18 @@ public class Interactable : MonoBehaviour {
 
         }
     }
-    public void OnFocus(Transform playertransf) // Utilizado quando o jogador clicar no objeto interativo
+    protected virtual void OnFocus(Transform playertransf) // Utilizado quando o jogador clicar no objeto interativo
     {
         isFocus = true;
         player = playertransf;
         hasInteracted = false;
     }
-    public void OnDefocus() // Utilizado quando o jogado clicar em algo que não seja o objeto interativo
+    protected virtual void OnDefocus() // Utilizado quando o jogado clicar em algo que não seja o objeto interativo
     {
         isFocus = false;
         hasInteracted = false;
     }
-    private void OnDrawGizmos() // Ver a area de alcance para realizar a interação e bem bonitinho
+    protected virtual void OnDrawGizmos() // Ver a area de alcance para realizar a interação e bem bonitinho
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position,radius);

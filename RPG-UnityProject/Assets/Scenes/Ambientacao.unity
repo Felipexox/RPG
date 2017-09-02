@@ -849,6 +849,7 @@ GameObject:
   - component: {fileID: 946382546}
   - component: {fileID: 946382545}
   - component: {fileID: 946382544}
+  - component: {fileID: 946382549}
   m_Layer: 0
   m_Name: Interact
   m_TagString: Untagged
@@ -868,7 +869,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  play: {fileID: 650313752}
 --- !u!23 &946382545
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -927,12 +927,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 946382543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.97, y: 1.3627863, z: -7.7254667}
+  m_LocalPosition: {x: -3.97, y: 0.48, z: -7.7254667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946382549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946382543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93da29514658d9e42879344957569c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modLife: 0
+  modForce: 0
+  modVelocity: 0
+  consumType: 0
 --- !u!1 &1201574920
 GameObject:
   m_ObjectHideFlags: 0

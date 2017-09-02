@@ -24,7 +24,6 @@ public class Weapon : Item {
     [SerializeField]
     protected double cuttingDamage;
 
-    
 
     protected virtual void hit_stronger() { }
 
