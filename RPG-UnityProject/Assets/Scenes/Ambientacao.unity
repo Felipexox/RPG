@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 650313754}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -486,8 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f05f5abbbe29e4e863155c5973af56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Jose
-  life: 0
+  nameCharacter: 
+  life: 10
   force: 0
   velocity: 3
   charisma: 0
@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 1
-  name: Knife
+  nameItem: 
   durability: 0
   type: 1
   magicDamage: 0
@@ -849,7 +849,6 @@ GameObject:
   - component: {fileID: 946382546}
   - component: {fileID: 946382545}
   - component: {fileID: 946382544}
-  - component: {fileID: 946382549}
   m_Layer: 0
   m_Name: Interact
   m_TagString: Untagged
@@ -865,10 +864,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 946382543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 613f9d7bc3ccec743893a3113b7c163f, type: 3}
+  m_Script: {fileID: 11500000, guid: f3fe3adb7ef84f84f89f2d1d658216a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
+  distance: 0
 --- !u!23 &946382545
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -933,21 +933,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &946382549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 946382543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93da29514658d9e42879344957569c29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modLife: 0
-  modForce: 0
-  modVelocity: 0
-  consumType: 0
 --- !u!1 &1201574920
 GameObject:
   m_ObjectHideFlags: 0

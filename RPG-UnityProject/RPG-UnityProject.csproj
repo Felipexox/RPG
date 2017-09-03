@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Model\Base\Weapon.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Chest.cs" />
+    <Compile Include="Assets\Scripts\Model\Item\Espinho.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Model\Weapons\Knife.cs" />

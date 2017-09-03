@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour {
     [SerializeField]
-    protected float radius = 3f;
-    protected bool isFocus = false, hasInteracted = false;
-    protected Transform player;
+    protected float radius = 3f, distance;
+    protected bool hasInteracted = false;
+    protected Transform playerTransform;
+    protected GameObject player;
 
     protected virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        OnFocus(player);
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player.transform;
     }
     protected virtual void Update()
     {
-        if (isFocus && !hasInteracted)
+        distance = Vector3.Distance(playerTransform.position, transform.position);
+        if (!hasInteracted)
         {
-            float distance = Vector3.Distance(player.position, transform.position);
             if (distance <= radius)
             {
-                Debug.Log("Interacting"); // Interação
-                hasInteracted = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Interaction();
+                    hasInteracted = true;
+                }
             }
 
         }
     }
-    protected virtual void OnFocus(Transform playertransf) // Utilizado quando o jogador clicar no objeto interativo
+    protected virtual void ReInteract()
     {
-        isFocus = true;
-        player = playertransf;
         hasInteracted = false;
     }
-    protected virtual void OnDefocus() // Utilizado quando o jogado clicar em algo que não seja o objeto interativo
+    protected virtual void Interaction()
     {
-        isFocus = false;
-        hasInteracted = false;
+
     }
     protected virtual void OnDrawGizmos() // Ver a area de alcance para realizar a interação e bem bonitinho
     {

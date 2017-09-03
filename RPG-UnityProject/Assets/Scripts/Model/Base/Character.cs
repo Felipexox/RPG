@@ -6,12 +6,12 @@ public class Character:MonoBehaviour  {
 
     [Header("INFO CHARACTER")]
     [SerializeField]
-    protected string name;
+    protected string nameCharacter;
     [Header("STATUS")]
     [SerializeField]
-    protected double life;
+    protected float life;
     [SerializeField]
-    protected double force;
+    protected float force;
     [SerializeField]
     protected float velocity;
     [SerializeField]
@@ -48,13 +48,13 @@ public class Character:MonoBehaviour  {
    
 
 
-    public virtual void hit_take(double hit_damage) {
+    public virtual void hit_take(float hit_damage) {
         this.life -= hit_damage;
     }
     
-    public double dano_by_status_fisico()
+    public float dano_by_status_fisico()
     {
-        double dano = 0;
+        float dano = 0;
         dano = (force * (velocity / 3)) / 10;
         return dano;
     }

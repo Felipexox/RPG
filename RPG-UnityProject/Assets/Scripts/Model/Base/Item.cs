@@ -8,7 +8,7 @@ public class Item : MonoBehaviour {
         CONSUMABLE,
         WEAPON,
         MISC,
-        QUESTITENS,
+        QUEST_ITENS,
 
     }
     [Header("ITEM INFO")]
@@ -16,12 +16,8 @@ public class Item : MonoBehaviour {
     protected typeItem itemType;
     [Header("INFO")]
     [SerializeField]
-    protected string name;
+    protected string nameItem;
     [SerializeField]
     protected double durability;
-	protected virtual void Interactable()
-    {
-
-    }
 
 }
