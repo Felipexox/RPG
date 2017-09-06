@@ -36,14 +36,14 @@ public class Character:MonoBehaviour  {
     }
 
     protected virtual void mov_run(Vector3 dir) {
-        dir = dir.normalized;
+       // dir = dir.normalized;
         Vector3 walk = dir * status.getAgility() * 1.3f;
         walk.y = rigidbody.velocity.y;
         rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, walk, Time.deltaTime *15);
     }
 
     protected virtual void mov_walk(Vector3 dir) {
-        dir = dir.normalized;
+      //  dir = dir.normalized;
         Vector3 walk = dir * status.getAgility();
         walk.y = rigidbody.velocity.y;
         rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, walk, Time.deltaTime * 15);

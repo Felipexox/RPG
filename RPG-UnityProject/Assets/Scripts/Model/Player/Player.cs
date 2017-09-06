@@ -26,8 +26,9 @@ public class Player : Character {
     }
     void move_controller()
     {
-        float x = Input.GetAxisRaw("Horizontal");
+        float x = Input.GetAxisRaw("Horizontal") *0.8f;
         float z = Input.GetAxisRaw("Vertical");
+        z = z < 0 ? z * 0.8f : z;
 
         //  Vector3 cameraDir = cam.getDir().normalized;
 

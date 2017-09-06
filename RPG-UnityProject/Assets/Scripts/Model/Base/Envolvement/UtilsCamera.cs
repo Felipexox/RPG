@@ -14,7 +14,9 @@ public class UtilsCamera : MonoBehaviour {
 
     protected float rotationY = 0.0f;
     protected float rotationX = 0.0f;
-
+    [Range(35, 65)]
+    [SerializeField]
+    protected float fildCamera = 60f;
     protected Transform mainCamera;
     [Header("Caracteristica")]
 
@@ -25,6 +27,8 @@ public class UtilsCamera : MonoBehaviour {
     [SerializeField]
     protected Transform target;
 
+
+
     protected void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -33,7 +37,7 @@ public class UtilsCamera : MonoBehaviour {
   
     protected void FixedUpdate()
     {
-
+        cameraZoom();
         rotateAround();
         followTarget();
     }
@@ -55,6 +59,12 @@ public class UtilsCamera : MonoBehaviour {
         Vector3 dir = target.position - mainCamera.position;
         dir.y = 0;
         return dir;
+    }
+    public void cameraZoom()
+    {
+        fildCamera += Input.GetAxis("Mouse ScrollWheel") * sensX * Time.deltaTime * 10;
+        fildCamera = Mathf.Clamp(fildCamera, 35, 65);
+        Camera.main.fieldOfView = fildCamera ;
     }
 
 }
