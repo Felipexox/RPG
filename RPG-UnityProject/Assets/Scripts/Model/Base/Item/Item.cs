@@ -20,4 +20,9 @@ public class Item : MonoBehaviour {
     [SerializeField]
     protected double durability;
 
+    public virtual string getNameItem()
+    {
+        return nameItem;
+    }
+
 }

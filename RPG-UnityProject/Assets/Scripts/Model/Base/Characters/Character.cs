@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Character:MonoBehaviour  {
-
+    public enum selfType
+    {
+        BAD_GUY,
+        GOOD_GUY
+    }
     [Header("INFO CHARACTER")]
     [SerializeField]
     protected string nameCharacter;
-    [Header("STATUS")]
     [SerializeField]
-    protected float life;
+    protected selfType self;
     [SerializeField]
-    protected float force;
-    [SerializeField]
-    protected float velocity;
-    [SerializeField]
-    protected double charisma;
+    protected Status status;
     [Header("ITENS")]
     [SerializeField]
-    protected Weapon weaponInHand;
+    protected Hand hand;
 
     [SerializeField]
     protected List<Item> itens;
@@ -26,6 +25,10 @@ public class Character:MonoBehaviour  {
 
     protected virtual void Start()
     {
+        if(hand == null)
+        {
+            hand = GetComponentInChildren<Hand>();
+        }
         if(rigidbody == null)
         {
             rigidbody = GetComponent<Rigidbody>();
@@ -34,14 +37,14 @@ public class Character:MonoBehaviour  {
 
     protected virtual void mov_run(Vector3 dir) {
         dir = dir.normalized;
-        Vector3 walk = dir * velocity * 1.3f;
+        Vector3 walk = dir * status.getAgility() * 1.3f;
         walk.y = rigidbody.velocity.y;
         rigidbody.velocity = walk;
     }
 
     protected virtual void mov_walk(Vector3 dir) {
         dir = dir.normalized;
-        Vector3 walk = dir * velocity;
+        Vector3 walk = dir * status.getAgility();
         walk.y = rigidbody.velocity.y;
         rigidbody.velocity = walk;
     }
@@ -49,26 +52,17 @@ public class Character:MonoBehaviour  {
 
 
     public virtual void hit_take(float hit_damage) {
-        this.life -= hit_damage;
+        status.hit_take(hit_damage);
     }
     
-    public float dano_by_status_fisico()
+    public Status getStatus()
     {
-        float dano = 0;
-        dano = (force * (velocity / 3)) / 10;
-        return dano;
+        return status;
     }
-    
 
-
-    public double getVida() { return this.life; }
-
-    public float getVelocity() { return this.velocity; }
-
-    public string getName() { return this.name; }
-
-    public double getCharisma() { return this.charisma; }
-
-    public double getForce() { return this.force; }
+    public selfType getSelf()
+    {
+        return self;
+    }
    
 }

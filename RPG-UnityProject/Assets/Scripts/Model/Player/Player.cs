@@ -8,6 +8,7 @@ public class Player : Character {
     private void Update()
     {
         move_controller();
+        attack_controller();
     }
 
     void move_controller()
@@ -21,6 +22,20 @@ public class Player : Character {
         }else
         {
             mov_walk(dir);
+        }
+    }
+    void attack_controller()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            hand.playAction1();
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                hand.playAction2();
+            }
         }
     }
    
