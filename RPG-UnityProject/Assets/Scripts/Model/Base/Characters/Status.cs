@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Status
 {
+ 
     [Header("STATUS")]
     [SerializeField]
     protected float life;
