@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : Character {
  
     private UtilsCamera cam;
+    [SerializeField]
+    private Bag bag;
     protected override void Start()
     {
         base.Start();
@@ -61,5 +63,32 @@ public class Player : Character {
         Quaternion lookTo = Quaternion.LookRotation(cam.getDir());
         transform.rotation = Quaternion.Lerp(transform.rotation, lookTo, 0.2f);
     }
-   
+    private bool canGetItem = true;
+    protected override void OnTriggerStay(Collider other)
+    {
+        base.OnTriggerStay(other);
+        if (!isMySelf(other))
+        {
+            // Debug.Log(other.name);
+            Debug.Log(canGetItem);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // when you press E canGetItem get the value false while you not Up your finger of buttom
+                if (canGetItem)
+                {
+                    Item otherItem = other.GetComponent<Item>();
+                    if (otherItem != null)
+                    {
+
+                        bag.addItem(otherItem);
+                    }
+                    canGetItem = false;
+                }
+            }else
+            {
+                canGetItem = true;
+            }
+        }
+    }
+
 }

@@ -89,15 +89,14 @@
     <Compile Include="Assets\Scripts\Model\Base\Characters\Status.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Envolvement\UtilsCamera.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Consumables.cs" />
-    <Compile Include="Assets\Scripts\Model\Base\Item\Interactable.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Store.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Weapon.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Utils.cs" />
     <Compile Include="Assets\Scripts\Model\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Model\Item\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Chest.cs" />
-    <Compile Include="Assets\Scripts\Model\Item\Espinho.cs" />
+    <Compile Include="Assets\Scripts\Model\Item\Potions\HealPotion.cs" />
+    <Compile Include="Assets\Scripts\Model\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Model\Weapons\Knife.cs" />

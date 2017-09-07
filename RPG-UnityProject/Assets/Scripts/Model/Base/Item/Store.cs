@@ -2,21 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Store : MonoBehaviour {
-    [Header("Status")]
+public class Store{
+    [Header("ITEM")]
     [SerializeField]
-    protected int qtdMaxDeItens;
-    protected List<Item> Itens;
-    protected virtual void AddItem(Item it)
+    protected List<Item> itens = new List<Item>();
+    [SerializeField]
+    protected int size;
+    public virtual bool addItem(Item item)
     {
-        if(Itens.Count < qtdMaxDeItens)
-            Itens.Add(it);
+        if (itens.Count < size)
+        {
+            itens.Add(item);
+            desableItem(item);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
-    protected virtual Item RemoveItem(int id)
+    public virtual void removeItem(int index)
     {
-        Item it = Itens[id];
-        Itens.RemoveAt(id);
-        return it;
+        itens.RemoveAt(index);
+
     }
-	// Use this for initialization
+    public virtual List<Item> getItens()
+    {
+        return this.itens;
+    }
+    public virtual void setSize(int size)
+    {
+        this.size = size;
+    }
+    protected virtual void desableItem(Item item)
+    {
+        item.GetComponent<MeshRenderer>().enabled = false;
+        item.GetComponent<Collider>().enabled = false;
+    }
+    protected virtual void enableItem(Item item, Transform transform)
+    {
+        //faz o item aparecer na frente
+        // item.transform.position =  transform.position + transform.forward * 1.5f;
+        item.transform.position = transform.position;
+        item.GetComponent<Collider>().enabled = true;
+        item.GetComponent<MeshRenderer>().enabled = true;
+    }
 }

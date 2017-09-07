@@ -19,8 +19,8 @@ public class Character:MonoBehaviour  {
     [SerializeField]
     protected Hand hand;
 
-    [SerializeField]
-    protected List<Item> itens;
+    protected CapsuleCollider capsuleCollider;
+
     protected Rigidbody rigidbody;
 
     protected virtual void Start()
@@ -32,6 +32,10 @@ public class Character:MonoBehaviour  {
         if(rigidbody == null)
         {
             rigidbody = GetComponent<Rigidbody>();
+        }
+        if(capsuleCollider == null)
+        {
+            createColliderToGet();
         }
     }
 
@@ -65,4 +69,38 @@ public class Character:MonoBehaviour  {
         return self;
     }
    
+    protected virtual void OnTriggerStay(Collider other)
+    {
+        
+    }
+    protected virtual void createColliderToGet()
+    {
+        capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
+        capsuleCollider.radius = 0.6f;
+        capsuleCollider.height = 2;
+        Collider collider = capsuleCollider as Collider;
+        collider.isTrigger = true;
+    }
+    protected virtual bool isMySelf(Collider other)
+    {
+        Collider[] colliders = getAllColliders();
+        
+        foreach(Collider tempCollider in colliders)
+        {
+            if(other == tempCollider)
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+    protected virtual Collider[] getAllColliders()
+    {
+
+        Collider[] colliders = GetComponentsInChildren<Collider>(true);
+
+        return colliders;
+    }
+
 }

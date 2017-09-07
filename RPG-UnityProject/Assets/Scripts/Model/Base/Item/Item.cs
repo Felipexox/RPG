@@ -25,4 +25,9 @@ public class Item : MonoBehaviour {
         return nameItem;
     }
 
+    public virtual Item getItem()
+    {
+        return this;
+    }
+
 }
