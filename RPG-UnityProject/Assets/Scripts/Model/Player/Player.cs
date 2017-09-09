@@ -15,6 +15,7 @@ public class Player : Character {
         {
             cam = GameObject.FindGameObjectWithTag("Camera").GetComponent<UtilsCamera>();
         }
+        bag = new Bag();
     }
     private void Update()
     {
@@ -67,25 +68,28 @@ public class Player : Character {
     protected override void OnTriggerStay(Collider other)
     {
         base.OnTriggerStay(other);
+
         if (!isMySelf(other))
         {
-            // Debug.Log(other.name);
-            Debug.Log(canGetItem);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (canGetItem)
             {
-                // when you press E canGetItem get the value false while you not Up your finger of buttom
-                if (canGetItem)
+                Item otherItem = other.GetComponent<Item>();
+                if (otherItem != null)
                 {
-                    Item otherItem = other.GetComponent<Item>();
-                    if (otherItem != null)
+                    // Debug.Log(other.name);
+                    //  Debug.Log(canGetItem);
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
+                    // when you press E canGetItem get the value false while you not Up your finger of buttom
+              
 
                         bag.addItem(otherItem);
+                        canGetItem = false;
                     }
-                    canGetItem = false;
-                }
-            }else
-            {
+                    
+               }
+            }
+            if (Input.GetKeyUp(KeyCode.E)) { 
                 canGetItem = true;
             }
         }

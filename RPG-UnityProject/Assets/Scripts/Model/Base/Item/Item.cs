@@ -11,6 +11,7 @@ public class Item : MonoBehaviour {
         QUEST_ITENS,
 
     }
+ 
     [Header("ITEM INFO")]
     [SerializeField]
     protected typeItem itemType;
@@ -18,7 +19,9 @@ public class Item : MonoBehaviour {
     [SerializeField]
     protected string nameItem;
     [SerializeField]
-    protected double durability;
+    protected float durability;
+    [SerializeField]
+    protected Sprite iconItem;
 
     public virtual string getNameItem()
     {
@@ -30,4 +33,24 @@ public class Item : MonoBehaviour {
         return this;
     }
 
+    public virtual void setName(string name)
+    {
+        this.nameItem = name;
+    }
+    public virtual void setTypeItem(typeItem type)
+    {
+        this.itemType = type;
+    }
+    public virtual void setDurability(float durability)
+    {
+        this.durability = durability;
+    }
+    public virtual void setIconImage(Sprite image)
+    {
+        this.iconItem = image;
+    }
+    public virtual Sprite getIconImage()
+    {
+        return this.iconItem;
+    }
 }

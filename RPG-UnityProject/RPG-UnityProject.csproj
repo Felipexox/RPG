@@ -90,8 +90,12 @@
     <Compile Include="Assets\Scripts\Model\Base\Envolvement\UtilsCamera.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Consumables.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Item.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Item\ItemMenu.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Item\Slot.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Item\SlotsManager.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Store.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\UIList.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Utils.cs" />
     <Compile Include="Assets\Scripts\Model\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Chest.cs" />

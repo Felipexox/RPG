@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Consumables : MonoBehaviour {
+public class Consumables : Item {
     public enum typeConsumable
     {
         FOOD,
@@ -11,13 +11,29 @@ public class Consumables : MonoBehaviour {
     }
     [Header("STATUS")]
     [SerializeField]
-    protected double modLife;
+    protected float modLife;
     [SerializeField]
-    protected double modForce;
+    protected float modForce;
     [SerializeField]
     protected float modVelocity;
     [Header("Consumable Type")]
     [SerializeField]
     protected typeConsumable consumType;
-
+    
+    public void setModLife(float modLife)
+    {
+        this.modLife = modLife;
+    }
+    public void setModeForce(float modForce)
+    {
+        this.modForce = modForce;
+    }
+    public void setModVelocity(float modVelocity)
+    {
+        this.modVelocity = modVelocity;
+    }
+    public void setTypeConsumable(typeConsumable type)
+    {
+        this.consumType = type;
+    }
 }

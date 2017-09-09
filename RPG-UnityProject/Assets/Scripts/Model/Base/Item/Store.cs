@@ -6,14 +6,20 @@ public class Store{
     [Header("ITEM")]
     [SerializeField]
     protected List<Item> itens = new List<Item>();
+
+    [Header("Size Store")]
     [SerializeField]
     protected int size;
+
+   
+
     public virtual bool addItem(Item item)
     {
         if (itens.Count < size)
         {
             itens.Add(item);
             desableItem(item);
+            
             return true;
         }
         else

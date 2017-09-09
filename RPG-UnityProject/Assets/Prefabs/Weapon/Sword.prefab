@@ -207,8 +207,9 @@ MonoBehaviour:
   itemType: 1
   nameItem: Sword
   durability: 0
+  iconItem: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   type: 0
   magicDamage: 0
-  physicistDamage: 20
+  physicDamage: 0
   cuttingDamage: 0
   full_damage: 0

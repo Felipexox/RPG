@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG-UnityProject", "RPG-UnityProject.csproj", "{53C190E5-D836-76FB-605E-AED281D1A860}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG-UnityProject.Editor", "RPG-UnityProject.Editor.csproj", "{6A9BCE81-60BF-F225-C17D-DB8F04C45608}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{53C190E5-D836-76FB-605E-AED281D1A860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53C190E5-D836-76FB-605E-AED281D1A860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53C190E5-D836-76FB-605E-AED281D1A860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A9BCE81-60BF-F225-C17D-DB8F04C45608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A9BCE81-60BF-F225-C17D-DB8F04C45608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A9BCE81-60BF-F225-C17D-DB8F04C45608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A9BCE81-60BF-F225-C17D-DB8F04C45608}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

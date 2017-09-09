@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : Item {
     public enum typeWeapons{
         MAGIC,
-        PHYSICIST,
+        PHYSIC,
         SHIELD
 
     }
@@ -19,7 +19,7 @@ public class Weapon : Item {
     protected float magicDamage;
 
     [SerializeField]
-    protected float physicistDamage;
+    protected float physicDamage;
 
     [SerializeField]
     protected float cuttingDamage;
@@ -39,7 +39,7 @@ public class Weapon : Item {
         Utils.enableCollider(collider);
 
         //The full damage is a variable for make the event in the collider take damage multiply by 1.5f
-        full_damage = (magicDamage + physicistDamage + cuttingDamage) * 1.5f;
+        full_damage = (magicDamage + physicDamage + cuttingDamage) * 1.5f;
     }
 
     public virtual void hit_weak(Status stats) {
@@ -52,7 +52,7 @@ public class Weapon : Item {
         Utils.enableCollider(collider);
 
         //The full damage is a variable for make the event in the collider take damage
-        full_damage = (magicDamage + physicistDamage + cuttingDamage);
+        full_damage = (magicDamage + physicDamage + cuttingDamage);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -64,11 +64,12 @@ public class Weapon : Item {
         {
             if (otherCharScript.getSelf() != myHandScript.getMyChar().getSelf() && !isDoHit(other.gameObject))
             {
-                otherCharScript.hit_take(physicistDamage + magicDamage + cuttingDamage);
+                otherCharScript.hit_take(physicDamage + magicDamage + cuttingDamage);
                 list_do_hit.Add(otherCharScript.gameObject);
             }
         }
     }
+
     protected virtual bool isDoHit(GameObject enemy)
     {
         foreach (GameObject tempEnemy in list_do_hit)
@@ -80,5 +81,21 @@ public class Weapon : Item {
         }
         return false;
     }
- 
+    
+    public void setTypeWeapon(typeWeapons type)
+    {
+        this.type = type;
+    }
+    public void setMagicDamage(float magicDamage)
+    {
+        this.magicDamage = magicDamage;
+    }
+    public void setPhysicDamage(float physicDamage)
+    {
+        this.physicDamage = physicDamage;
+    }
+    public void setCuttingDamage(float cuttingDamage)
+    {
+        this.cuttingDamage = cuttingDamage;
+    }
 }
