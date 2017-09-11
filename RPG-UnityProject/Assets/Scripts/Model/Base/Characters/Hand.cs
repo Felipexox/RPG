@@ -24,14 +24,14 @@ public class Hand : MonoBehaviour {
         Weapon weapon = transform.GetChild(0).GetComponentInChildren<Weapon>();
 
         if (weapon != null) {
-            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("HandIdle"));
+          //  Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("HandIdle"));
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("HandIdle"))
             {
                 itemInHand = weapon;
                 weapon.hit_weak(myChar.getStatus());
                 int idAnimation = Random.Range(1, 2);
                 string animationName = weapon.getNameItem() + "Hit_1";
-                Debug.Log(animationName);
+            //    Debug.Log(animationName);
                 animator.Play(animationName);
             }
         }

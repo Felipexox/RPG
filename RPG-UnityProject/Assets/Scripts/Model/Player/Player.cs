@@ -7,21 +7,46 @@ public class Player : Character {
     private UtilsCamera cam;
     [SerializeField]
     private Bag bag;
+    private GameObject inventoryUIObject;
+    private bool isActiveInventory;
+    protected void Awake()
+    {
+        if (inventoryUIObject == null)
+        {
+            inventoryUIObject = GameObject.FindGameObjectWithTag("Inventory");
+            bag.setInventoryUI(inventoryUIObject);
+            inventoryUIObject.SetActive(false);
+
+        }
+    }
     protected override void Start()
     {
         base.Start();
-        Cursor.visible = false;
+      //  Cursor.visible = false;
         if(cam == null)
         {
             cam = GameObject.FindGameObjectWithTag("Camera").GetComponent<UtilsCamera>();
         }
-        bag = new Bag();
+      
+        bag.updateInventory();
     }
     private void Update()
     {
-        move_controller();
-        attack_controller();
-
+        if (!isActiveInventory)
+        {
+            move_controller();
+            attack_controller();
+            cam.resumeCamera();
+        }else
+        {
+            cam.pauseCamera();
+        }
+        inventoryManager();
+        
+    }
+    public void removeItemFromBag(int index)
+    {
+        bag.removeItem(index, transform);
     }
     private void FixedUpdate()
     {
@@ -93,6 +118,17 @@ public class Player : Character {
                 canGetItem = true;
             }
         }
+    }
+    void inventoryManager()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+ 
+            isActiveInventory = !isActiveInventory;
+  
+            inventoryUIObject.SetActive(isActiveInventory);
+        }
+        
     }
 
 }

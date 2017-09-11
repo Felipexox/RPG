@@ -4,29 +4,42 @@ using UnityEngine;
 using UnityEngine.UI;
 [System.Serializable]
 public class Bag : Store {
-
-  
-    public Bag()
+    private GameObject inventoryUI;
+    public void setInventoryUI(GameObject inventoryUI)
     {
-        //     createSlot(size);
-        getAllSlotsFromInventory();
-        updateInventory();
+        this.inventoryUI = inventoryUI;
     }
+   
     private void getAllSlotsFromInventory()
     {
-     
+        Slot[] tempSlots = inventoryUI.transform.GetChild(0).GetComponentsInChildren<Slot>();
         //get all images from the invetory
         for (int i = 0; i < size; i++) {
-          
-        //    itensSlots.Add(new Slot());
+
+
+            slots.Add(tempSlots[i]);
+        }
+    }
+    private void updateUI()
+    {
+        for(int i = 0; i < slots.Count; i++)
+        {
+            if (i < itens.Count && itens.Count != 0)
+            {
+                // make the ui of inventory update of realy itens in bag
+                slots[i].setIcon(itens[i].getIconImage());
+                slots[i].activeItem();
+            }else
+            {
+                
+            
+                slots[i].deactive();
+            }
         }
     }
     public void updateInventory()
     {
-        for(int i = 0; i < itens.Count; i++)
-        {
-         
-        }
+        getAllSlotsFromInventory();
     }
     public void createSlot(int numberSlots)
     {
@@ -42,15 +55,15 @@ public class Bag : Store {
     {
         bool canAdd = base.addItem(item);
         if (canAdd)
-            updateInventory();
+            updateUI();
         return canAdd;
 
     }
-    public override void removeItem(int index)
+    public override void removeItem(int index, Transform trans)
     {
-  
-         base.removeItem(index);
-         updateInventory();
+
+         base.removeItem(index, trans);
+         updateUI();
       
     }
 

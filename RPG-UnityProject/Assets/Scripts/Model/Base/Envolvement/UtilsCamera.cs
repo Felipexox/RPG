@@ -27,7 +27,17 @@ public class UtilsCamera : MonoBehaviour {
     [SerializeField]
     protected Transform target;
 
+    protected bool isPause;
 
+    public void pauseCamera()
+    {
+        isPause = true;
+    }
+
+    public void resumeCamera()
+    {
+        isPause = false;
+    }
 
     protected void Start()
     {
@@ -37,9 +47,12 @@ public class UtilsCamera : MonoBehaviour {
   
     protected void FixedUpdate()
     {
-        cameraZoom();
-        rotateAround();
-        followTarget();
+        if (!isPause)
+        {
+            cameraZoom();
+            rotateAround();
+            followTarget();
+        }
     }
     protected void rotateAround()
     {

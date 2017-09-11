@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour {
     [SerializeField]
     private Image iconSlot;
-  
+    [SerializeField]
+    private int id;
     public void setIcon(Sprite image)
     {
          iconSlot.sprite = image;
@@ -18,9 +19,19 @@ public class Slot : MonoBehaviour {
     public void deactive()
     {
         Color32 color = new Color32();
+        Debug.Log("Deactive");
         color = Color.white;
         color.a = 0;
         iconSlot.color = color;
     }
+    public void setIdSlot(int id)
+    {
+        this.id = id;
 
+    }
+    public void removeItemFromSlot()
+    {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player.removeItemFromBag(id);
+    }
 }
