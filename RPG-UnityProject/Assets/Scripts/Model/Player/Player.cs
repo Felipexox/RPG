@@ -7,18 +7,8 @@ public class Player : Character {
     private UtilsCamera cam;
     [SerializeField]
     private Bag bag;
-    private GameObject inventoryUIObject;
-    private bool isActiveInventory;
-    protected void Awake()
-    {
-        if (inventoryUIObject == null)
-        {
-            inventoryUIObject = GameObject.FindGameObjectWithTag("Inventory");
-            bag.setInventoryUI(inventoryUIObject);
-            inventoryUIObject.SetActive(false);
+    private bool isActiveInventory = false;
 
-        }
-    }
     protected override void Start()
     {
         base.Start();
@@ -27,8 +17,10 @@ public class Player : Character {
         {
             cam = GameObject.FindGameObjectWithTag("Camera").GetComponent<UtilsCamera>();
         }
-      
+        setInventory();
         bag.updateInventory();
+        InventoryManager.intance.setActiveInventory(isActiveInventory);
+
     }
     private void Update()
     {
@@ -44,9 +36,32 @@ public class Player : Character {
         inventoryManager();
         
     }
+    private void setInventory()
+    {
+
+        GameObject inventoryUIObject = InventoryManager.intance.gameObject;
+        Debug.Log(inventoryUIObject.name);
+        bag.setInventoryUI(inventoryUIObject);
+    
+    }
     public void removeItemFromBag(int index)
     {
         bag.removeItem(index, transform);
+    }
+    public void holdItemFromBag(int index)
+    {
+
+        if (hand.getItem() != null)
+        {
+            bag.addItem(hand.getItem());
+            bag.setItemParent(hand.getItem(), null);
+
+        }
+
+        hand.setItem(bag.holdItem(index, hand.transform.GetChild(0)));
+        bag.removeItemAtSlot(index);
+     
+       
     }
     private void FixedUpdate()
     {
@@ -126,7 +141,7 @@ public class Player : Character {
  
             isActiveInventory = !isActiveInventory;
   
-            inventoryUIObject.SetActive(isActiveInventory);
+            InventoryManager.intance.setActiveInventory(isActiveInventory);
         }
         
     }

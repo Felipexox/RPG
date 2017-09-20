@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour {
     public void deactive()
     {
         Color32 color = new Color32();
-        Debug.Log("Deactive");
+       // Debug.Log("Deactive");
         color = Color.white;
         color.a = 0;
         iconSlot.color = color;
@@ -34,4 +34,10 @@ public class Slot : MonoBehaviour {
         Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.removeItemFromBag(id);
     }
+    public void holdItemFromSlot()
+    {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player.holdItemFromBag(id);
+    }
+    
 }

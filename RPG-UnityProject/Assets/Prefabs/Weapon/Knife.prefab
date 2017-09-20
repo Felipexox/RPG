@@ -20,7 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4896005581870830}
   - component: {fileID: 114753955293342474}
-  - component: {fileID: 65655001922646014}
+  - component: {fileID: 65339708619054078}
+  - component: {fileID: 54194186730205228}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -94,15 +95,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725473257675664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.287219, y: 12.752634, z: 13.283993}
+  m_LocalRotation: {x: -0, y: -0, z: -0.25188413, w: 0.96775746}
+  m_LocalPosition: {x: 0, y: 1.35, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4100079319634026}
   - {fileID: 4801698641583516}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -29.178001}
 --- !u!23 &23490083644554228
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -181,15 +182,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1750703084010734}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65655001922646014
+--- !u!54 &54194186730205228
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725473257675664}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65339708619054078
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725473257675664}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.06606515, y: 0.47948116, z: 0.114685655}
   m_Center: {x: -0.0063299825, y: 0.28711766, z: -0.00502268}
@@ -207,8 +223,9 @@ MonoBehaviour:
   itemType: 1
   nameItem: Knife
   durability: 0
+  iconItem: {fileID: 0}
   type: 1
   magicDamage: 0
-  physicistDamage: 10
+  physicDamage: 10
   cuttingDamage: 0
   full_damage: 0

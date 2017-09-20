@@ -70,5 +70,12 @@ public class Hand : MonoBehaviour {
             }
         }
     }
-
+    public Item getItem()
+    {
+        return this.itemInHand;
+    }
+    public void setItem(Item item)
+    {
+        this.itemInHand = item;
+    }
 }

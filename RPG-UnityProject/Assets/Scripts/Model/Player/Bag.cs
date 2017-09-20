@@ -27,6 +27,7 @@ public class Bag : Store {
             if (i < itens.Count && itens.Count != 0)
             {
                 // make the ui of inventory update of realy itens in bag
+                slots[i].setIdSlot(i);
                 slots[i].setIcon(itens[i].getIconImage());
                 slots[i].activeItem();
             }else
@@ -66,5 +67,32 @@ public class Bag : Store {
          updateUI();
       
     }
+    
+    public void removeItemAtSlot(int index)
+    {
+        if (itens.Count > index)
+        {
+            itens.RemoveAt(index);
+          
+        }
+        updateUI();
+    }
+    public Item holdItem(int indexItem, Transform handTransform)
+    {
+        //desable physics and colliders and enable trigger to hit other characters
+        Collider collider = itens[indexItem].GetComponent<Collider>();
+        collider.enabled = false;
+        collider.isTrigger = true;
+        itens[indexItem].GetComponent<Rigidbody>().isKinematic = true;
+
+        setItemMeshActive(itens[indexItem], true);
+
+        setItemParent(indexItem, handTransform);
+        setDefaultTransform(itens[indexItem].transform);
+
+        return itens[indexItem];
+    }
+   
+   
 
 }

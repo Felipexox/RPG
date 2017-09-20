@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Model\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Chest.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Potions\HealPotion.cs" />
+    <Compile Include="Assets\Scripts\Model\Managers\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Player\PlayerController.cs" />
