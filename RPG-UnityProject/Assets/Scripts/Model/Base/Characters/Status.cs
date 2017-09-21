@@ -19,8 +19,12 @@ public class Status
     protected float inteligence;
     [SerializeField]
     protected float defense;
- 
 
+    private float maxLife;
+    public Status()
+    {
+        maxLife = life;
+    }
     public float getLife() { return this.life; }
 
     public virtual void hit_take(float hit_damage)
@@ -42,13 +46,26 @@ public class Status
 
     public void setLife(float life) { this.life = life; }
 
+    public void addLife(float life) {
+
+        this.life += life;
+        if(this.life > maxLife)
+        {
+            this.life = maxLife;
+        }
+    }
+
     public void setAgility(float agility) { this.agility = agility; }
+
+    public void addAgility(float agility) { this.agility += agility; }
 
     public void setInteligence(float inteligence) { this.inteligence = inteligence; }
 
     public void setCharisma(float charisma) { this.charisma = charisma; }
 
     public void setForce(float force) { this.force = force; }
+    
+    public void addForce(float force) { this.force += force; }
 
     public void setDefense(float defense) { this.defense = defense; }
 }

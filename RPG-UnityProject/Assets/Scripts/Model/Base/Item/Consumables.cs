@@ -36,4 +36,21 @@ public class Consumables : Item {
     {
         this.consumType = type;
     }
+
+    public float getModLife()
+    {
+        return this.modLife;
+    }
+    public float getModeForce()
+    {
+        return this.modForce;
+    }
+    public float getModVelocity()
+    {
+        return this.modVelocity;
+    }
+    public typeConsumable getTypeConsumable()
+    {
+        return this.consumType;
+    }
 }

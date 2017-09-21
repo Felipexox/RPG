@@ -223,7 +223,7 @@ MonoBehaviour:
   itemType: 1
   nameItem: Sword
   durability: 0
-  iconItem: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  iconItem: {fileID: 21300000, guid: 33e65328d20c0584eaac0eaa2fba7adc, type: 3}
   type: 0
   magicDamage: 0
   physicDamage: 10

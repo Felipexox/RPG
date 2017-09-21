@@ -61,6 +61,40 @@ public class Hand : BodyParts {
             }
         }
     }
+    public void eventConsume()
+    {
+        if (itemInHand != null)
+        {
+            Player player = (Player)myChar;
+            player.itemConsume((Consumables)itemInHand.getItem());
+        }
+    }
+    public void consume()
+    {
+        Item item = GetComponentInChildren<Item>();
+        Consumables consumable = GetComponentInChildren<Consumables>();
+        if (consumable != null)
+        {
+            Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("HandIdle"));
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("HandIdle"))
+            {
+                itemInHand = consumable;
+                
+                int idAnimation = Random.Range(1, 2);
+                string animationName =  "Consume";
+                Debug.Log(animationName);
+                animator.Play(animationName);
+            }
+        }
+        else
+        {
+            if (item != null)
+            {
+                itemInHand = item;
+                // interação de item
+            }
+        }
+    }
     public Item getItem()
     {
         return this.itemInHand;

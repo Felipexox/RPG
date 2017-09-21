@@ -223,7 +223,7 @@ MonoBehaviour:
   itemType: 1
   nameItem: Knife
   durability: 0
-  iconItem: {fileID: 0}
+  iconItem: {fileID: 21300000, guid: 3e59719cdc189944f9e4648428283aab, type: 3}
   type: 1
   magicDamage: 0
   physicDamage: 10

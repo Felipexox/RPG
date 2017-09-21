@@ -55,7 +55,7 @@ public class Slot : MonoBehaviour {
             }
             else if (type == Item.typeItem.CONSUMABLE)
             {
-
+                player.holdItemFromBag(id);
             }
             else if (type == Item.typeItem.EQUIPAMENT)
             {

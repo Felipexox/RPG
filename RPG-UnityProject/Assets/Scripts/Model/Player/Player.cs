@@ -28,7 +28,7 @@ public class Player : Character {
         if (!isActiveInventory)
         {
             move_controller();
-            attack_controller();
+            Hand_controller();
             cam.resumeCamera();
         }else
         {
@@ -96,11 +96,22 @@ public class Player : Character {
             mov_walk(dir);
         }
     }
-    void attack_controller()
+    void Hand_controller()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            hand.playAction1();
+            if (hand.getItem() != null)
+            {
+                if (hand.getItem().GetType().ToString() == "Consumables")
+                {
+                    hand.consume();
+                }
+                else
+                {
+                    hand.playAction1();
+                }
+
+            }
         }
         else
         {
@@ -223,6 +234,19 @@ public class Player : Character {
     {
 
         bag.addItem(item);
+    }
+
+    public void itemConsume(Consumables consumableItem)
+    {
+        if (consumableItem.removeDurability(10))
+        {
+            status.addLife(consumableItem.getModLife());
+        }else
+        {
+            UIEquipamentManager.instance.desableItemHandRight();
+            consumableItem.gameObject.SetActive(false);
+        }
+        
     }
     #endregion
 }

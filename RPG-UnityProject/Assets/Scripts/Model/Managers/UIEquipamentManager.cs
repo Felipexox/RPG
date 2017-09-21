@@ -103,7 +103,15 @@ public class UIEquipamentManager : InventoryManager {
             uiHandRight.removeItem();
         }
     }
-
+    public void desableItemHandRight()
+    {
+        if (uiHandRight.getItem() != null)
+        {
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            uiHandRight.getItem().transform.parent = null;
+            uiHandRight.removeItem();
+        }
+    }
     public void removeItemHandLeft()
     {
         if (uiHandLeft.getItem() != null)

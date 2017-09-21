@@ -58,4 +58,14 @@ public class Item : MonoBehaviour {
     {
         return this.iconItem;
     }
+    public virtual bool removeDurability(float durability)
+    {
+        this.durability -= durability;
+        if(this.durability <= 0)
+        {
+
+            return false;
+        }
+        return true;
+    }
 }
