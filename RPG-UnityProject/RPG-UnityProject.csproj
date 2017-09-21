@@ -84,26 +84,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Model\Base\Characters\Body.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Characters\BodyParts.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Characters\Character.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Characters\Equipament.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Characters\Hand.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Characters\Head.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Characters\Status.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Envolvement\UtilsCamera.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Consumables.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\ItemMenu.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\Item\Props.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Slot.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\SlotsManager.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Store.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Model\Base\UIList.cs" />
-    <Compile Include="Assets\Scripts\Model\Base\Utils.cs" />
     <Compile Include="Assets\Scripts\Model\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Chest.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Potions\HealPotion.cs" />
     <Compile Include="Assets\Scripts\Model\Managers\InventoryManager.cs" />
+    <Compile Include="Assets\Scripts\Model\Managers\UIEquipamentManager.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\Equipament\UIBody.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\Equipament\UICorpsEquip.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHandLeft.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHandRight.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHead.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\UIList.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\Utils.cs" />
     <Compile Include="Assets\Scripts\Model\Weapons\Knife.cs" />
     <Compile Include="Assets\Scripts\Model\Weapons\Sword.cs" />
   </ItemGroup>

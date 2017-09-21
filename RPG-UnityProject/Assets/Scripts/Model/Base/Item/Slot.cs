@@ -6,6 +6,8 @@ public class Slot : MonoBehaviour {
     [SerializeField]
     private Image iconSlot;
     [SerializeField]
+    private Item.typeItem type;
+    [SerializeField]
     private int id;
     public void setIcon(Sprite image)
     {
@@ -23,6 +25,7 @@ public class Slot : MonoBehaviour {
         color = Color.white;
         color.a = 0;
         iconSlot.color = color;
+        id = -1;
     }
     public void setIdSlot(int id)
     {
@@ -31,13 +34,34 @@ public class Slot : MonoBehaviour {
     }
     public void removeItemFromSlot()
     {
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.removeItemFromBag(id);
+        if (id >= 0)
+        {
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player.removeItemFromBag(id);
+        }
     }
-    public void holdItemFromSlot()
+    public void setType(Item.typeItem type)
     {
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.holdItemFromBag(id);
+        this.type = type;
+    }
+    public void interactItemFromSlot()
+    {
+        if (id >= 0)
+        {
+            Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            if (type == Item.typeItem.WEAPON)
+            {
+                player.holdItemFromBag(id);
+            }
+            else if (type == Item.typeItem.CONSUMABLE)
+            {
+
+            }
+            else if (type == Item.typeItem.EQUIPAMENT)
+            {
+                player.equipItemFromBag(id);
+            }
+        }
     }
     
 }

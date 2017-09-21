@@ -13,11 +13,20 @@ public class Character:MonoBehaviour  {
     protected string nameCharacter;
     [SerializeField]
     protected selfType self;
-    [SerializeField]
-    protected Status status;
+    [SerializeField] 
+    protected Status status = new Status();
+
+    protected Status tempStatus = new Status();
+
     [Header("ITENS")]
     [SerializeField]
     protected Hand hand;
+    [SerializeField]
+    protected Equipament equipament;
+
+    protected Head head;
+
+    protected Body body;
 
     protected CapsuleCollider capsuleCollider;
 
@@ -37,8 +46,32 @@ public class Character:MonoBehaviour  {
         {
             createColliderToGet();
         }
+        if(head == null)
+        {
+            head = GetComponentInChildren<Head>();
+        }
+        if(body == null)
+        {
+            body = GetComponentInChildren<Body>();
+        }
+        // copy status to temp status
+        copyStatus();
+        
     }
+    protected virtual void copyStatus()
+    {
+        Status temp = new Status();
+        tempStatus.setCharisma(status.getCharisma());
+        tempStatus.setDefense(status.getDefense());
+        tempStatus.setForce(status.getForce());
+        tempStatus.setAgility(status.getAgility());
+        tempStatus.setInteligence(status.getInteligence());
 
+    }
+    protected virtual void Update()
+    {
+        setFinalStats();
+    }
     protected virtual void mov_run(Vector3 dir) {
        // dir = dir.normalized;
         Vector3 walk = dir * status.getAgility() * 1.3f;
@@ -101,6 +134,50 @@ public class Character:MonoBehaviour  {
         Collider[] colliders = GetComponentsInChildren<Collider>(true);
 
         return colliders;
+    }
+    protected virtual void setFinalStats()
+    {
+        //the stats of player are based in the adition of armor stats plus helmet stats
+
+        float force = tempStatus.getForce();
+
+        float agility = tempStatus.getAgility();
+
+        float charisma = tempStatus.getCharisma();
+
+        float inteligence = tempStatus.getInteligence();
+
+        float defense = tempStatus.getDefense();
+
+        //Armor stats
+        if(equipament.getArmorItem() != null)
+        {
+            force += equipament.getArmorItem().getStats().getForce();
+            agility += equipament.getArmorItem().getStats().getAgility();
+            charisma += equipament.getArmorItem().getStats().getCharisma();
+            inteligence += equipament.getArmorItem().getStats().getInteligence();
+            defense += equipament.getArmorItem().getStats().getDefense();
+        }
+        //Helmet stats
+        if (equipament.getHelmetItem() != null)
+        {
+            force += equipament.getHelmetItem().getStats().getForce();
+            agility += equipament.getHelmetItem().getStats().getAgility();
+            charisma += equipament.getHelmetItem().getStats().getCharisma();
+            inteligence += equipament.getHelmetItem().getStats().getInteligence();
+            defense += equipament.getHelmetItem().getStats().getDefense();
+        }
+        //treatment of variables 
+        if(agility <= 1)
+        {
+            agility = 1;
+        }
+
+        status.setForce(force);
+        status.setAgility(agility);
+        status.setCharisma(charisma);
+        status.setInteligence(inteligence);
+        status.setDefense(defense);
     }
 
 }

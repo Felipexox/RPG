@@ -19,11 +19,12 @@ public class Player : Character {
         }
         setInventory();
         bag.updateInventory();
-        InventoryManager.intance.setActiveInventory(isActiveInventory);
+        setActiveUI(false);
 
     }
     private void Update()
     {
+        base.Update();
         if (!isActiveInventory)
         {
             move_controller();
@@ -33,43 +34,52 @@ public class Player : Character {
         {
             cam.pauseCamera();
         }
-        inventoryManager();
+        inventoryController();
         
     }
-    private void setInventory()
-    {
-
-        GameObject inventoryUIObject = InventoryManager.intance.gameObject;
-        Debug.Log(inventoryUIObject.name);
-        bag.setInventoryUI(inventoryUIObject);
-    
-    }
-    public void removeItemFromBag(int index)
-    {
-        bag.removeItem(index, transform);
-    }
-    public void holdItemFromBag(int index)
-    {
-
-        if (hand.getItem() != null)
-        {
-            bag.addItem(hand.getItem());
-            bag.setItemParent(hand.getItem(), null);
-
-        }
-
-        hand.setItem(bag.holdItem(index, hand.transform.GetChild(0)));
-        bag.removeItemAtSlot(index);
-     
-       
-    }
+   
+ 
     private void FixedUpdate()
     {
         rotation_controller();
     }
+  
+    private bool canGetItem = true;
+    protected override void OnTriggerStay(Collider other)
+    {
+        base.OnTriggerStay(other);
+
+        if (!isMySelf(other))
+        {
+            if (canGetItem)
+            {
+                Item otherItem = other.GetComponent<Item>();
+                if (otherItem != null)
+                {
+                    // Debug.Log(other.name);
+                    //  Debug.Log(canGetItem);
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        // when you press E canGetItem get the value false while you not Up your finger of buttom
+                        addItemToBag(otherItem);
+
+                        canGetItem = false;
+                    }
+                    
+               }
+            }
+            if (Input.GetKeyUp(KeyCode.E)) { 
+                canGetItem = true;
+            }
+        }
+    }
+ 
+  
+    #region Player Controllers
+
     void move_controller()
     {
-        float x = Input.GetAxisRaw("Horizontal") *0.8f;
+        float x = Input.GetAxisRaw("Horizontal") * 0.8f;
         float z = Input.GetAxisRaw("Vertical");
         z = z < 0 ? z * 0.8f : z;
 
@@ -80,7 +90,8 @@ public class Player : Character {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             mov_run(dir);
-        }else
+        }
+        else
         {
             mov_walk(dir);
         }
@@ -104,46 +115,114 @@ public class Player : Character {
         Quaternion lookTo = Quaternion.LookRotation(cam.getDir());
         transform.rotation = Quaternion.Lerp(transform.rotation, lookTo, 0.2f);
     }
-    private bool canGetItem = true;
-    protected override void OnTriggerStay(Collider other)
-    {
-        base.OnTriggerStay(other);
 
-        if (!isMySelf(other))
-        {
-            if (canGetItem)
-            {
-                Item otherItem = other.GetComponent<Item>();
-                if (otherItem != null)
-                {
-                    // Debug.Log(other.name);
-                    //  Debug.Log(canGetItem);
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                    // when you press E canGetItem get the value false while you not Up your finger of buttom
-              
-
-                        bag.addItem(otherItem);
-                        canGetItem = false;
-                    }
-                    
-               }
-            }
-            if (Input.GetKeyUp(KeyCode.E)) { 
-                canGetItem = true;
-            }
-        }
-    }
-    void inventoryManager()
+    void inventoryController()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
- 
+
             isActiveInventory = !isActiveInventory;
-  
-            InventoryManager.intance.setActiveInventory(isActiveInventory);
+            setActiveUI(isActiveInventory);
+
         }
+
+    }
+
+    #endregion
+
+    #region Inventory Interactions
+
+    private void setInventory()
+    {
+
+        GameObject inventoryUIObject = InventoryManager.intance.gameObject;
+        Debug.Log(inventoryUIObject.name);
+        bag.setInventoryUI(inventoryUIObject);
+
+    }
+
+
+    public void holdItemFromBag(int index)
+    {
+     
+        if (UIEquipamentManager.instance.getItemHandRight() != null)
+        {
+
+            UIEquipamentManager.instance.removeItemHandRight();
+
+        }
+        Item item = bag.setItemInBody(index, hand.transform.GetChild(0));
+        hand.setItem(item);
+        bag.removeItemAtSlot(index);
+        UIEquipamentManager.instance.putItemHandRight(item);
+        
+
+    }
+
+    public void equipItemFromBag(int index)
+    {
+      
+            Item item = bag.getItem(index);
+            if (item.GetComponent<Props>().getTypeProps() == Props.TypeProps.HELMET)
+            {
+
+                if (UIEquipamentManager.instance.getItemHead() != null)
+                {
+                    
+                    UIEquipamentManager.instance.removeItemHelmet();
+
+                }
+                Item helmetItem = bag.setItemInBody(index, head.transform);
+                equipament.setHelmetItem(helmetItem);
+
+                bag.removeItemAtSlot(index);
+                UIEquipamentManager.instance.putItemHelmet(helmetItem);
+
+            }
+            if (item.GetComponent<Props>().getTypeProps() == Props.TypeProps.ARMOR)
+            {
+                if (UIEquipamentManager.instance.getItemBody() != null)
+                {
+
+                    UIEquipamentManager.instance.removeItemArmor();
+
+                }
+                Item armorItem = bag.setItemInBody(index, body.transform);
+                equipament.setArmorItem(armorItem);
+
+                bag.removeItemAtSlot(index);
+                UIEquipamentManager.instance.putItemArmor(armorItem);
+
+            }
         
     }
 
+    public void removeItemFromBag(int index)
+    {
+        bag.removeItem(index, transform);
+    }
+    
+   
+    void setActiveUI(bool isActive)
+    {
+        InventoryManager.intance.setActiveInventory(isActive);
+        UIEquipamentManager.instance.setActiveInventory(isActive);
+    }
+
+    public void removeHelmetEquipament()
+    {
+        equipament.setHelmetItem(null);
+    }
+
+    public void removeArmorEquipament()
+    {
+        equipament.setArmorItem(null);
+    }
+
+    public void addItemToBag(Item item)
+    {
+
+        bag.addItem(item);
+    }
+    #endregion
 }

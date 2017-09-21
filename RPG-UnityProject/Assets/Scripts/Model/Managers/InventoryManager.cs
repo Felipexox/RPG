@@ -5,17 +5,17 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class InventoryManager : MonoBehaviour {
     [SerializeField]
-    private bool activeInventory;
+    protected bool activeInventory = false;
     public static InventoryManager intance;
-    private void Awake()
+    protected virtual void Awake()
     {
         intance = this;
     }
-    private void Update()
+    protected virtual void Update()
     {
-       // setActiveInventory(activeInventory);
+   //     setActiveInventory(activeInventory);
     }
-    public void setActiveInventory(bool isActive)
+    public virtual void setActiveInventory(bool isActive)
     {
  
         Image currentImage = GetComponent<Image>();
@@ -24,7 +24,7 @@ public class InventoryManager : MonoBehaviour {
         findTransformsChilds(transform, isActive);
         
     }
-    private void setImageActiveChilds(Transform[] objs, bool isActive)
+    protected virtual void setImageActiveChilds(Transform[] objs, bool isActive)
     {
         for(int i = 0; i < objs.Length; i++)
         {
@@ -41,7 +41,7 @@ public class InventoryManager : MonoBehaviour {
             findTransformsChilds(objs[i], isActive);
         }
     }
-    private void findTransformsChilds(Transform obj, bool isActive)
+    protected virtual void findTransformsChilds(Transform obj, bool isActive)
     {
         List<Transform> transforms = new List<Transform>();
         int length = obj.childCount;

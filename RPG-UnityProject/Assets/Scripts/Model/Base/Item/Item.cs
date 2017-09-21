@@ -7,6 +7,7 @@ public class Item : MonoBehaviour {
     {
         CONSUMABLE,
         WEAPON,
+        EQUIPAMENT,
         MISC,
         QUEST_ITENS,
 
@@ -36,6 +37,10 @@ public class Item : MonoBehaviour {
     public virtual void setName(string name)
     {
         this.nameItem = name;
+    }
+    public virtual typeItem getTypeItem()
+    {
+        return this.itemType;
     }
     public virtual void setTypeItem(typeItem type)
     {

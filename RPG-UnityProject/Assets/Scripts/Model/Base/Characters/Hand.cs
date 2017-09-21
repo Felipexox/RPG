@@ -2,22 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand : MonoBehaviour {
-    [SerializeField]
-    private Character myChar;
-    private Animator animator;
+public class Hand : BodyParts {
+   
+  
     [SerializeField]
     private Item itemInHand;
-    private void Start()
-    {
-        myChar = GetComponentInParent<Character>();
-        animator = GetComponent<Animator>();
-    }
+  
 
-    public Character getMyChar()
-    {
-        return myChar;
-    }
     public void playAction1()
     {
         Item item = transform.GetChild(0).GetComponentInChildren<Item>();

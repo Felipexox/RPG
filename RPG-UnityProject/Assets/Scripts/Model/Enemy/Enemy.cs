@@ -14,6 +14,7 @@ public class Enemy : Character {
     }
     private void Update()
     {
+        base.Update();
         lifeBar.value = status.getLife();
         died();
     }
