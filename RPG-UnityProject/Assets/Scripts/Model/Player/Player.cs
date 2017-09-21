@@ -20,7 +20,7 @@ public class Player : Character {
         setInventory();
         bag.updateInventory();
         setActiveUI(false);
-
+        UIInfoPlayerManager.instance.setNamePlayer(nameCharacter);
     }
     private void Update()
     {

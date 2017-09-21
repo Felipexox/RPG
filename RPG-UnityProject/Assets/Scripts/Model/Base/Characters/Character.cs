@@ -13,8 +13,10 @@ public class Character:MonoBehaviour  {
     protected string nameCharacter;
     [SerializeField]
     protected selfType self;
+
     [SerializeField] 
     protected Status status = new Status();
+
 
     protected Status tempStatus = new Status();
 
@@ -56,6 +58,7 @@ public class Character:MonoBehaviour  {
         }
         // copy status to temp status
         copyStatus();
+        status.updateLevel();
         
     }
     protected virtual void copyStatus()
@@ -88,8 +91,8 @@ public class Character:MonoBehaviour  {
    
 
 
-    public virtual void hit_take(float hit_damage) {
-        status.hit_take(hit_damage);
+    public virtual void hit_take(float hit_damage, Character hitByChar) {
+        status.hit_take(hit_damage, hitByChar);
     }
     
     public Status getStatus()

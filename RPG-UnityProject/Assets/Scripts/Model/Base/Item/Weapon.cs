@@ -64,7 +64,7 @@ public class Weapon : Item {
         {
             if (otherCharScript.getSelf() != myHandScript.getMyChar().getSelf() && !isDoHit(other.gameObject))
             {
-                otherCharScript.hit_take(physicDamage + magicDamage + cuttingDamage);
+                otherCharScript.hit_take(physicDamage + magicDamage + cuttingDamage, myHandScript.getMyChar());
                 list_do_hit.Add(otherCharScript.gameObject);
             }
         }

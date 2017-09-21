@@ -103,8 +103,9 @@
     <Compile Include="Assets\Scripts\Model\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Chest.cs" />
     <Compile Include="Assets\Scripts\Model\Item\Potions\HealPotion.cs" />
-    <Compile Include="Assets\Scripts\Model\Managers\InventoryManager.cs" />
-    <Compile Include="Assets\Scripts\Model\Managers\UIEquipamentManager.cs" />
+    <Compile Include="Assets\Scripts\Model\Managers\UI\InventoryManager.cs" />
+    <Compile Include="Assets\Scripts\Model\Managers\UI\UIEquipamentManager.cs" />
+    <Compile Include="Assets\Scripts\Model\Managers\UI\UIInfoPlayerManager.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Player\PlayerController.cs" />
@@ -113,6 +114,10 @@
     <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHandLeft.cs" />
     <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHandRight.cs" />
     <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHead.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UIInfo.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UILevelPlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UINamePlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UIXPPlayer.cs" />
     <Compile Include="Assets\Scripts\Model\UI\UIList.cs" />
     <Compile Include="Assets\Scripts\Model\UI\Utils.cs" />
     <Compile Include="Assets\Scripts\Model\Weapons\Knife.cs" />
