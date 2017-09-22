@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Model\Base\Characters\Head.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Characters\Status.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Envolvement\UtilsCamera.cs" />
+    <Compile Include="Assets\Scripts\Model\Base\IA\BaseIA.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Consumables.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Model\Base\Item\ItemMenu.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Assets\Scripts\Model\Managers\UI\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Model\Managers\UI\UIEquipamentManager.cs" />
     <Compile Include="Assets\Scripts\Model\Managers\UI\UIInfoPlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Model\Managers\UI\UIStatusManager.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Bag.cs" />
     <Compile Include="Assets\Scripts\Model\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Model\Player\PlayerController.cs" />
@@ -114,10 +116,17 @@
     <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHandLeft.cs" />
     <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHandRight.cs" />
     <Compile Include="Assets\Scripts\Model\UI\Equipament\UIHead.cs" />
-    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UIInfo.cs" />
-    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UILevelPlayer.cs" />
-    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UINamePlayer.cs" />
-    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\UIXPPlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Info\UIInfo.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Info\UILevelPlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Info\UILifeBarPlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Info\UINamePlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Info\UIXPPlayer.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Status\UIStatus.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Status\UIStatusCharisma.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Status\UIStatusDefense.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Status\UIStatusForce.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Status\UIStatusInteligence.cs" />
+    <Compile Include="Assets\Scripts\Model\UI\PlayerInfo\Status\UIStatusLife.cs" />
     <Compile Include="Assets\Scripts\Model\UI\UIList.cs" />
     <Compile Include="Assets\Scripts\Model\UI\Utils.cs" />
     <Compile Include="Assets\Scripts\Model\Weapons\Knife.cs" />

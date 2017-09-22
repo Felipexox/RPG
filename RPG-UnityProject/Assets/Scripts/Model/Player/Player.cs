@@ -8,7 +8,7 @@ public class Player : Character {
     [SerializeField]
     private Bag bag;
     private bool isActiveInventory = false;
-
+    private bool isActiveStatusUI = false;
     protected override void Start()
     {
         base.Start();
@@ -19,13 +19,17 @@ public class Player : Character {
         }
         setInventory();
         bag.updateInventory();
-        setActiveUI(false);
+        setActiveInventoryUI(false);
+        setActiveStatusUI(false);
         UIInfoPlayerManager.instance.setNamePlayer(nameCharacter);
+        UIStatusManager.getInstance().pointsManager(this.status);
+        UIStatusManager.getInstance().setAllTexts(status.getMaxLife(), status.getForce(), status.getCharisma(), status.getDefense(), status.getInteligence());
     }
+
     private void Update()
     {
         base.Update();
-        if (!isActiveInventory)
+        if (!isActiveInventory && !isActiveStatusUI)
         {
             move_controller();
             Hand_controller();
@@ -34,8 +38,11 @@ public class Player : Character {
         {
             cam.pauseCamera();
         }
-        inventoryController();
-        
+        uiInventoryController();
+        uiStatusController();
+        uiControllerInfoPlayer();
+        UIStatusManager.getInstance().setActiveButtomAdd(this.status.havePointsToAdd());
+        UIStatusManager.getInstance().setAllTexts(status.getMaxLife(), status.getForce(), status.getCharisma(), status.getDefense(), status.getInteligence());
     }
    
  
@@ -45,6 +52,7 @@ public class Player : Character {
     }
   
     private bool canGetItem = true;
+
     protected override void OnTriggerStay(Collider other)
     {
         base.OnTriggerStay(other);
@@ -127,16 +135,35 @@ public class Player : Character {
         transform.rotation = Quaternion.Lerp(transform.rotation, lookTo, 0.2f);
     }
 
-    void inventoryController()
+    void uiInventoryController()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
 
             isActiveInventory = !isActiveInventory;
-            setActiveUI(isActiveInventory);
+            setActiveInventoryUI(isActiveInventory);
 
         }
 
+    }
+
+    void uiControllerInfoPlayer()
+    {
+        UIInfoPlayerManager.instance.setLevelPlayer(status.getLevel());
+        UIInfoPlayerManager.instance.setExperiencePlayer(status.getAllExperience());
+        UIInfoPlayerManager.instance.setLifeBarValue(status.getLife());
+        UIInfoPlayerManager.instance.setLifeBarMaxValue(status.getMaxLife());
+    }
+
+    void uiStatusController()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+
+            isActiveStatusUI = !isActiveStatusUI;
+            setActiveStatusUI(isActiveStatusUI);
+
+        }
     }
 
     #endregion
@@ -146,12 +173,11 @@ public class Player : Character {
     private void setInventory()
     {
 
-        GameObject inventoryUIObject = InventoryManager.intance.gameObject;
+        GameObject inventoryUIObject = InventoryManager.getInstance().gameObject;
         Debug.Log(inventoryUIObject.name);
         bag.setInventoryUI(inventoryUIObject);
 
     }
-
 
     public void holdItemFromBag(int index)
     {
@@ -214,12 +240,17 @@ public class Player : Character {
     }
     
    
-    void setActiveUI(bool isActive)
+    void setActiveInventoryUI(bool isActive)
     {
-        InventoryManager.intance.setActiveInventory(isActive);
+        InventoryManager.getInstance().setActiveInventory(isActive);
         UIEquipamentManager.instance.setActiveInventory(isActive);
     }
 
+    void setActiveStatusUI(bool isActive)
+    {
+        UIStatusManager.getInstance().setActiveInventory(isActive);
+   
+    }
     public void removeHelmetEquipament()
     {
         equipament.setHelmetItem(null);
@@ -238,14 +269,14 @@ public class Player : Character {
 
     public void itemConsume(Consumables consumableItem)
     {
-        if (consumableItem.removeDurability(10))
-        {
-            status.addLife(consumableItem.getModLife());
-        }else
+        Debug.Log("Life Heal potion: " + consumableItem.getModLife());
+        status.addLife(consumableItem.getModLife());
+        if (!consumableItem.removeDurability(10))
         {
             UIEquipamentManager.instance.desableItemHandRight();
             consumableItem.gameObject.SetActive(false);
         }
+      
         
     }
     #endregion

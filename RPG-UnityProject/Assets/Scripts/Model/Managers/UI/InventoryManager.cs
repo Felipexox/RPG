@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour {
     [SerializeField]
     protected bool activeInventory = false;
-    public static InventoryManager intance;
-    protected virtual void Awake()
+    private static InventoryManager instance;
+    private void Awake()
     {
-        intance = this;
+        instance = this;
+    }
+    public static InventoryManager getInstance()
+    {
+        return instance;
     }
     protected virtual void Update()
     {
-   //     setActiveInventory(activeInventory);
+       // setActiveInventory(activeInventory);
     }
     public virtual void setActiveInventory(bool isActive)
     {

@@ -103,6 +103,7 @@ public class UIEquipamentManager : InventoryManager {
             uiHandRight.removeItem();
         }
     }
+
     public void desableItemHandRight()
     {
         if (uiHandRight.getItem() != null)
@@ -112,6 +113,7 @@ public class UIEquipamentManager : InventoryManager {
             uiHandRight.removeItem();
         }
     }
+
     public void removeItemHandLeft()
     {
         if (uiHandLeft.getItem() != null)

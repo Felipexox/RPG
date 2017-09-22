@@ -13,6 +13,8 @@ public class UIInfoPlayerManager : MonoBehaviour {
     [SerializeField]
     protected UINamePlayer uiNamePlayer;
 
+    [SerializeField]
+    protected UILifeBarPlayer uiLifeBarPlayer;
 
     private void Awake()
     {
@@ -20,6 +22,16 @@ public class UIInfoPlayerManager : MonoBehaviour {
         uiXPPlayer = GetComponentInChildren<UIXPPlayer>();
         uiLevelPlayer = GetComponentInChildren<UILevelPlayer>();
         uiNamePlayer = GetComponentInChildren<UINamePlayer>();
+        uiLifeBarPlayer = GetComponentInChildren<UILifeBarPlayer>();
+    }
+    public void setLifeBarValue(float value)
+    {
+        uiLifeBarPlayer.setLifeValue(value);
+    }
+
+    public void setLifeBarMaxValue(float maxValue)
+    {
+        uiLifeBarPlayer.setLifeMaxValue(maxValue);
     }
 
     public void setLevelPlayer(int level)

@@ -24,13 +24,20 @@ public class Status
     [SerializeField]
     protected float defense;
 
+
     private float experieceNeeded = 70;
 
-    private float maxLife;
-    public Status()
+    private float lastExperienceNeeded;
+
+    private int pointsToAdd;
+
+    protected float maxLife;
+
+    public virtual void startLife()
     {
         maxLife = life;
     }
+
     public virtual void hit_take(float hit_damage, Character hitByChar)
     {
      
@@ -42,6 +49,7 @@ public class Status
             isDead(hitByChar);
         }
     }
+
     public bool isDead(Character hitByChar)
     {
         if(this.life <= 0)
@@ -53,9 +61,20 @@ public class Status
             return false;
         }
     }
+
+    public void removePointsToAdd()
+    {
+        pointsToAdd--;
+    }
+
     public void addAgility(float agility) { this.agility += agility; }
 
     public void addForce(float force) { this.force += force; }
+
+    public void addMaxLife(float life)
+    {
+        this.maxLife += life;
+    }
 
     public void addLife(float life)
     {
@@ -67,16 +86,32 @@ public class Status
         }
     }
 
+    public void addCharisma(float charisma)
+    {
+        this.charisma += charisma;
+    }
+
+    public void addDefense(float defense)
+    {
+        this.defense += defense;
+    }
+
+    public void addInteligence(float inteligence)
+    {
+        this.inteligence += inteligence;
+    }
+
     public void setLevelByExperience()
     {
         //Level plus plus for level update
         this.level++;
         //the current is equals experience subtracted of needed experience
         experience -= experieceNeeded;
+        lastExperienceNeeded = experieceNeeded;
         //the new level experience needed is current experience multiplication by 1.6f
         experieceNeeded *= 1.6f;
-        UIInfoPlayerManager.instance.setLevelPlayer(level);
-        UIInfoPlayerManager.instance.setExperiencePlayer(getAllExperience());
+        pointsToAdd++;
+      
 
     }
 
@@ -99,11 +134,25 @@ public class Status
 
     public float getAllExperience()
     {
-        return (experieceNeeded + experience);
+        float tempExperience = level != 1 ? (lastExperienceNeeded + experience) : experience;
+        return tempExperience;
     }
+
+    public int getPointsToAdd()
+    {
+        return pointsToAdd;
+    }
+
+    public bool havePointsToAdd()
+    {
+        return pointsToAdd > 0;
+    }
+
     #region gets methods
 
     public float getLife() { return this.life; }
+
+    public float getMaxLife() { return this.maxLife; }
 
     public float getExperience() { return this.experience; }
 
@@ -124,6 +173,8 @@ public class Status
     #region set methods
 
     public void setLife(float life) { this.life = life; }
+
+    public void setMaxLife(float maxLife) { this.maxLife = maxLife; }
 
     public void setExperience(float experience) { this.experience = experience; }
 

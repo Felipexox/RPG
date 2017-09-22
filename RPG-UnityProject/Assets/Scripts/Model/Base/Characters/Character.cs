@@ -33,10 +33,15 @@ public class Character:MonoBehaviour  {
     protected CapsuleCollider capsuleCollider;
 
     protected Rigidbody rigidbody;
-
+    protected virtual void Awake()
+    {
+        status.startLife();
+    }
     protected virtual void Start()
     {
-        if(hand == null)
+   
+   
+        if (hand == null)
         {
             hand = GetComponentInChildren<Hand>();
         }
@@ -59,16 +64,20 @@ public class Character:MonoBehaviour  {
         // copy status to temp status
         copyStatus();
         status.updateLevel();
-        
+    
+
     }
     protected virtual void copyStatus()
     {
+        
         Status temp = new Status();
+        tempStatus = status;
+    /*   temp.setMaxLife(status.getMaxLife());
         tempStatus.setCharisma(status.getCharisma());
         tempStatus.setDefense(status.getDefense());
         tempStatus.setForce(status.getForce());
         tempStatus.setAgility(status.getAgility());
-        tempStatus.setInteligence(status.getInteligence());
+        tempStatus.setInteligence(status.getInteligence());*/
 
     }
     protected virtual void Update()
@@ -141,6 +150,11 @@ public class Character:MonoBehaviour  {
     protected virtual void setFinalStats()
     {
         //the stats of player are based in the adition of armor stats plus helmet stats
+        copyStatus();
+
+        float life = tempStatus.getLife();
+
+        float maxLife = tempStatus.getMaxLife();
 
         float force = tempStatus.getForce();
 
@@ -155,6 +169,7 @@ public class Character:MonoBehaviour  {
         //Armor stats
         if(equipament.getArmorItem() != null)
         {
+            maxLife += equipament.getArmorItem().getStats().getLife();
             force += equipament.getArmorItem().getStats().getForce();
             agility += equipament.getArmorItem().getStats().getAgility();
             charisma += equipament.getArmorItem().getStats().getCharisma();
@@ -164,6 +179,7 @@ public class Character:MonoBehaviour  {
         //Helmet stats
         if (equipament.getHelmetItem() != null)
         {
+            maxLife += equipament.getHelmetItem().getStats().getLife();
             force += equipament.getHelmetItem().getStats().getForce();
             agility += equipament.getHelmetItem().getStats().getAgility();
             charisma += equipament.getHelmetItem().getStats().getCharisma();
@@ -175,7 +191,8 @@ public class Character:MonoBehaviour  {
         {
             agility = 1;
         }
-
+        status.setMaxLife(maxLife);
+        status.setLife(life);
         status.setForce(force);
         status.setAgility(agility);
         status.setCharisma(charisma);
