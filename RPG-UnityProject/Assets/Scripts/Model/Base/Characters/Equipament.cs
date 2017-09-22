@@ -12,6 +12,7 @@ public class Equipament {
     public void setArmorItem(Item armor)
     {
         this.armor = (Props)armor;
+      
     }
     public void setHelmetItem(Item helmet)
     {

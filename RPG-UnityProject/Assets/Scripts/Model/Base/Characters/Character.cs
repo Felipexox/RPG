@@ -33,10 +33,12 @@ public class Character:MonoBehaviour  {
     protected CapsuleCollider capsuleCollider;
 
     protected Rigidbody rigidbody;
+
     protected virtual void Awake()
     {
         status.startLife();
     }
+
     protected virtual void Start()
     {
    
@@ -62,15 +64,21 @@ public class Character:MonoBehaviour  {
             body = GetComponentInChildren<Body>();
         }
         // copy status to temp status
-        copyStatus();
+        copyTempStatus();
         status.updateLevel();
-    
+      
 
     }
+
     protected virtual void copyStatus()
     {
+        status = tempStatus;
+    }
+
+    protected virtual void copyTempStatus()
+    {
         
-        Status temp = new Status();
+
         tempStatus = status;
     /*   temp.setMaxLife(status.getMaxLife());
         tempStatus.setCharisma(status.getCharisma());
@@ -80,10 +88,12 @@ public class Character:MonoBehaviour  {
         tempStatus.setInteligence(status.getInteligence());*/
 
     }
+
     protected virtual void Update()
     {
-        setFinalStats();
+        //setFinalStats();
     }
+
     protected virtual void mov_run(Vector3 dir) {
        // dir = dir.normalized;
         Vector3 walk = dir * status.getAgility() * 1.3f;
@@ -98,8 +108,6 @@ public class Character:MonoBehaviour  {
         rigidbody.velocity = Vector3.Lerp(rigidbody.velocity, walk, Time.deltaTime * 15);
     }
    
-
-
     public virtual void hit_take(float hit_damage, Character hitByChar) {
         status.hit_take(hit_damage, hitByChar);
     }
@@ -118,6 +126,7 @@ public class Character:MonoBehaviour  {
     {
         
     }
+
     protected virtual void createColliderToGet()
     {
         capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
@@ -126,6 +135,7 @@ public class Character:MonoBehaviour  {
         Collider collider = capsuleCollider as Collider;
         collider.isTrigger = true;
     }
+
     protected virtual bool isMySelf(Collider other)
     {
         Collider[] colliders = getAllColliders();
@@ -140,6 +150,7 @@ public class Character:MonoBehaviour  {
         return false;
 
     }
+
     protected virtual Collider[] getAllColliders()
     {
 
@@ -147,10 +158,11 @@ public class Character:MonoBehaviour  {
 
         return colliders;
     }
-    protected virtual void setFinalStats()
+
+    protected virtual void addStatsByEquipArmor()
     {
         //the stats of player are based in the adition of armor stats plus helmet stats
-        copyStatus();
+       // copyStatus();
 
         float life = tempStatus.getLife();
 
@@ -176,18 +188,9 @@ public class Character:MonoBehaviour  {
             inteligence += equipament.getArmorItem().getStats().getInteligence();
             defense += equipament.getArmorItem().getStats().getDefense();
         }
-        //Helmet stats
-        if (equipament.getHelmetItem() != null)
-        {
-            maxLife += equipament.getHelmetItem().getStats().getLife();
-            force += equipament.getHelmetItem().getStats().getForce();
-            agility += equipament.getHelmetItem().getStats().getAgility();
-            charisma += equipament.getHelmetItem().getStats().getCharisma();
-            inteligence += equipament.getHelmetItem().getStats().getInteligence();
-            defense += equipament.getHelmetItem().getStats().getDefense();
-        }
+      
         //treatment of variables 
-        if(agility <= 1)
+        if (agility <= 1)
         {
             agility = 1;
         }
@@ -200,4 +203,134 @@ public class Character:MonoBehaviour  {
         status.setDefense(defense);
     }
 
+    protected virtual void addStatsByEquipHelmet()
+    {
+        //the stats of player are based in the adition of armor stats plus helmet stats
+        // copyStatus();
+
+        float life = tempStatus.getLife();
+
+        float maxLife = tempStatus.getMaxLife();
+
+        float force = tempStatus.getForce();
+
+        float agility = tempStatus.getAgility();
+
+        float charisma = tempStatus.getCharisma();
+
+        float inteligence = tempStatus.getInteligence();
+
+        float defense = tempStatus.getDefense();
+
+        //Helmet stats
+        if (equipament.getHelmetItem() != null)
+        {
+            maxLife += equipament.getHelmetItem().getStats().getLife();
+            force += equipament.getHelmetItem().getStats().getForce();
+            agility += equipament.getHelmetItem().getStats().getAgility();
+            charisma += equipament.getHelmetItem().getStats().getCharisma();
+            inteligence += equipament.getHelmetItem().getStats().getInteligence();
+            defense += equipament.getHelmetItem().getStats().getDefense();
+        }
+        //treatment of variables 
+        if (agility <= 1)
+        {
+            agility = 1;
+        }
+        status.setMaxLife(maxLife);
+        status.setLife(life);
+        status.setForce(force);
+        status.setAgility(agility);
+        status.setCharisma(charisma);
+        status.setInteligence(inteligence);
+        status.setDefense(defense);
+    }
+
+    protected virtual void subtractStatsByHelmet()
+    {
+        //the stats of player are based in the adition of armor stats plus helmet stats
+        // copyStatus();
+
+        float life = tempStatus.getLife();
+
+        float maxLife = tempStatus.getMaxLife();
+
+        float force = tempStatus.getForce();
+
+        float agility = tempStatus.getAgility();
+
+        float charisma = tempStatus.getCharisma();
+
+        float inteligence = tempStatus.getInteligence();
+
+        float defense = tempStatus.getDefense();
+
+   
+        //Helmet stats
+        if (equipament.getHelmetItem() != null)
+        {
+            maxLife -= equipament.getHelmetItem().getStats().getLife();
+            force -= equipament.getHelmetItem().getStats().getForce();
+            agility -= equipament.getHelmetItem().getStats().getAgility();
+            charisma -= equipament.getHelmetItem().getStats().getCharisma();
+            inteligence -= equipament.getHelmetItem().getStats().getInteligence();
+            defense -= equipament.getHelmetItem().getStats().getDefense();
+        }
+        //treatment of variables 
+        if (agility <= 1)
+        {
+            agility = 1;
+        }
+        status.setMaxLife(maxLife);
+        status.setLife(life);
+        status.setForce(force);
+        status.setAgility(agility);
+        status.setCharisma(charisma);
+        status.setInteligence(inteligence);
+        status.setDefense(defense);
+    }
+
+    protected virtual void subtractStatsByArmor()
+    {
+        //the stats of player are based in the adition of armor stats plus helmet stats
+        // copyStatus();
+
+        float life = tempStatus.getLife();
+
+        float maxLife = tempStatus.getMaxLife();
+
+        float force = tempStatus.getForce();
+
+        float agility = tempStatus.getAgility();
+
+        float charisma = tempStatus.getCharisma();
+
+        float inteligence = tempStatus.getInteligence();
+
+        float defense = tempStatus.getDefense();
+
+
+        //Armor stats
+        if (equipament.getArmorItem() != null)
+        {
+            maxLife -= equipament.getArmorItem().getStats().getLife();
+            force -= equipament.getArmorItem().getStats().getForce();
+            agility -= equipament.getArmorItem().getStats().getAgility();
+            charisma -= equipament.getArmorItem().getStats().getCharisma();
+            inteligence -= equipament.getArmorItem().getStats().getInteligence();
+            defense -= equipament.getArmorItem().getStats().getDefense();
+        }
+        //treatment of variables 
+        if (agility <= 1)
+        {
+            agility = 1;
+        }
+        status.setMaxLife(maxLife);
+        status.setLife(life);
+        status.setForce(force);
+        status.setAgility(agility);
+        status.setCharisma(charisma);
+        status.setInteligence(inteligence);
+        status.setDefense(defense);
+    }
 }

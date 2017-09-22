@@ -211,7 +211,7 @@ public class Player : Character {
                 }
                 Item helmetItem = bag.setItemInBody(index, head.transform);
                 equipament.setHelmetItem(helmetItem);
-
+                addStatsByEquipHelmet();
                 bag.removeItemAtSlot(index);
                 UIEquipamentManager.instance.putItemHelmet(helmetItem);
 
@@ -226,7 +226,7 @@ public class Player : Character {
                 }
                 Item armorItem = bag.setItemInBody(index, body.transform);
                 equipament.setArmorItem(armorItem);
-
+                addStatsByEquipArmor();
                 bag.removeItemAtSlot(index);
                 UIEquipamentManager.instance.putItemArmor(armorItem);
 
@@ -253,11 +253,13 @@ public class Player : Character {
     }
     public void removeHelmetEquipament()
     {
+        subtractStatsByHelmet();
         equipament.setHelmetItem(null);
     }
 
     public void removeArmorEquipament()
     {
+        subtractStatsByArmor();
         equipament.setArmorItem(null);
     }
 
