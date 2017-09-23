@@ -9,6 +9,7 @@ public class Player : Character {
     private Bag bag;
     private bool isActiveInventory = false;
     private bool isActiveStatusUI = false;
+    private bool onMove;
     protected override void Start()
     {
         base.Start();
@@ -41,8 +42,11 @@ public class Player : Character {
         uiInventoryController();
         uiStatusController();
         uiControllerInfoPlayer();
-        UIStatusManager.getInstance().setActiveButtomAdd(this.status.havePointsToAdd());
-        UIStatusManager.getInstance().setAllTexts(status.getMaxLife(), status.getForce(), status.getCharisma(), status.getDefense(), status.getInteligence());
+        if (UIStatusManager.getInstance() != null)
+        {
+            UIStatusManager.getInstance().setActiveButtomAdd(this.status.havePointsToAdd());
+            UIStatusManager.getInstance().setAllTexts(status.getMaxLife(), status.getForce(), status.getCharisma(), status.getDefense(), status.getInteligence());
+        }
     }
    
  
@@ -104,6 +108,7 @@ public class Player : Character {
             mov_walk(dir);
         }
     }
+
     void Hand_controller()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -129,6 +134,7 @@ public class Player : Character {
             }
         }
     }
+
     void rotation_controller()
     {
         Quaternion lookTo = Quaternion.LookRotation(cam.getDir());
@@ -149,10 +155,14 @@ public class Player : Character {
 
     void uiControllerInfoPlayer()
     {
-        UIInfoPlayerManager.instance.setLevelPlayer(status.getLevel());
-        UIInfoPlayerManager.instance.setExperiencePlayer(status.getAllExperience());
-        UIInfoPlayerManager.instance.setLifeBarValue(status.getLife());
-        UIInfoPlayerManager.instance.setLifeBarMaxValue(status.getMaxLife());
+        if (UIInfoPlayerManager.instance != null)
+        {
+            UIInfoPlayerManager.instance.setLevelPlayer(status.getLevel());
+
+            UIInfoPlayerManager.instance.setExperiencePlayer(status.getAllExperience());
+            UIInfoPlayerManager.instance.setLifeBarValue(status.getLife());
+            UIInfoPlayerManager.instance.setLifeBarMaxValue(status.getMaxLife());
+        }
     }
 
     void uiStatusController()
@@ -173,9 +183,12 @@ public class Player : Character {
     private void setInventory()
     {
 
-        GameObject inventoryUIObject = InventoryManager.getInstance().gameObject;
-        Debug.Log(inventoryUIObject.name);
-        bag.setInventoryUI(inventoryUIObject);
+        if (InventoryManager.getInstance() != null)
+        {
+            GameObject inventoryUIObject = InventoryManager.getInstance().gameObject;
+            Debug.Log(inventoryUIObject.name);
+            bag.setInventoryUI(inventoryUIObject);
+        }
 
     }
 
@@ -251,6 +264,7 @@ public class Player : Character {
         UIStatusManager.getInstance().setActiveInventory(isActive);
    
     }
+
     public void removeHelmetEquipament()
     {
         subtractStatsByHelmet();

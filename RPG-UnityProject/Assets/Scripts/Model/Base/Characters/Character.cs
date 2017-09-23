@@ -34,6 +34,8 @@ public class Character:MonoBehaviour  {
 
     protected Rigidbody rigidbody;
 
+    protected bool inMove;
+
     protected virtual void Awake()
     {
         status.startLife();
@@ -95,6 +97,7 @@ public class Character:MonoBehaviour  {
     }
 
     protected virtual void mov_run(Vector3 dir) {
+        setInMove(dir);
        // dir = dir.normalized;
         Vector3 walk = dir * status.getAgility() * 1.3f;
         walk.y = rigidbody.velocity.y;
@@ -102,6 +105,7 @@ public class Character:MonoBehaviour  {
     }
 
     protected virtual void mov_walk(Vector3 dir) {
+        setInMove(dir);
       //  dir = dir.normalized;
         Vector3 walk = dir * status.getAgility();
         walk.y = rigidbody.velocity.y;
@@ -332,5 +336,21 @@ public class Character:MonoBehaviour  {
         status.setCharisma(charisma);
         status.setInteligence(inteligence);
         status.setDefense(defense);
+    }
+
+    public virtual bool getInMove()
+    {
+        return inMove;
+    }
+
+    protected virtual void setInMove(Vector3 move)
+    {
+        if(move == Vector3.zero)
+        {
+            inMove = false;
+        }else
+        {
+            inMove = true;
+        }
     }
 }
